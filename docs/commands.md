@@ -171,6 +171,10 @@
  * [**hal config security api ssl edit**](#hal-config-security-api-ssl-edit)
  * [**hal config security api ssl enable**](#hal-config-security-api-ssl-enable)
  * [**hal config security authn**](#hal-config-security-authn)
+ * [**hal config security authn ldap**](#hal-config-security-authn-ldap)
+ * [**hal config security authn ldap disable**](#hal-config-security-authn-ldap-disable)
+ * [**hal config security authn ldap edit**](#hal-config-security-authn-ldap-edit)
+ * [**hal config security authn ldap enable**](#hal-config-security-authn-ldap-enable)
  * [**hal config security authn oauth2**](#hal-config-security-authn-oauth2)
  * [**hal config security authn oauth2 disable**](#hal-config-security-authn-oauth2-disable)
  * [**hal config security authn oauth2 edit**](#hal-config-security-authn-oauth2-edit)
@@ -663,6 +667,7 @@ hal config deploy edit [parameters]
 This is only required when Spinnaker is being deployed in non-Kubernetes clustered configuration.
  * `--consul-enabled`: Whether or not to use Consul as a service discovery mechanism to deploy Spinnaker.
  * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
+ * `--location`: This is the location spinnaker will be deployed to.
  * `--no-validate`: (*Default*: `false`) Skip validation.
  * `--type`: Flotilla: Deploy Spinnaker with one server group per microservice, and a single shared Redis.
 LocalhostDebian: Download and run the Spinnaker debians on the machine running the Daemon.
@@ -3338,8 +3343,77 @@ hal config security authn [parameters] [subcommands]
  * `--no-validate`: (*Default*: `false`) Skip validation.
 
 #### Subcommands
+ * `ldap`: Configure the ldap method for authenticating.
  * `oauth2`: Configure the oauth2 method for authenticating.
  * `saml`: Configure the saml method for authenticating.
+
+---
+## hal config security authn ldap
+
+Configure the ldap method for authenticating.
+
+#### Usage
+```
+hal config security authn ldap [parameters] [subcommands]
+```
+
+#### Parameters
+ * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
+ * `--no-validate`: (*Default*: `false`) Skip validation.
+
+#### Subcommands
+ * `disable`: Set the ldap method as disabled
+ * `edit`: Configure authentication using a LDAP identity provider.
+ * `enable`: Set the ldap method as enabled
+
+---
+## hal config security authn ldap disable
+
+Set the ldap method as disabled
+
+#### Usage
+```
+hal config security authn ldap disable [parameters]
+```
+
+#### Parameters
+ * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
+ * `--no-validate`: (*Default*: `false`) Skip validation.
+
+
+---
+## hal config security authn ldap edit
+
+placeholder text...markus says fix this.
+
+#### Usage
+```
+hal config security authn ldap edit [parameters]
+```
+
+#### Parameters
+ * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
+ * `--no-validate`: (*Default*: `false`) Skip validation.
+ * `--url`: ldap:// or ldaps:// url of the LDAP server
+ * `--user-dn-pattern`: Placeholder...uid={0},ou=users
+ * `--user-search-base`: Placeholder...
+ * `--user-search-filter`: Placeholder
+
+
+---
+## hal config security authn ldap enable
+
+Set the ldap method as enabled
+
+#### Usage
+```
+hal config security authn ldap enable [parameters]
+```
+
+#### Parameters
+ * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
+ * `--no-validate`: (*Default*: `false`) Skip validation.
+
 
 ---
 ## hal config security authn oauth2

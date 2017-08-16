@@ -28,6 +28,7 @@ import com.netflix.spinnaker.halyard.cli.command.v1.config.ci.CiCommand
 import com.netflix.spinnaker.halyard.cli.command.v1.config.providers.ProviderCommand
 import com.netflix.spinnaker.halyard.cli.command.v1.config.security.api.ApiSecurityCommand
 import com.netflix.spinnaker.halyard.cli.command.v1.config.security.authn.AuthnCommand
+import com.netflix.spinnaker.halyard.cli.command.v1.config.security.authn.ldap.EditLdapCommand
 import com.netflix.spinnaker.halyard.cli.command.v1.config.security.authn.ldap.LdapCommand
 import com.netflix.spinnaker.halyard.cli.command.v1.config.security.authn.oauth2.EditOAuth2Command
 import com.netflix.spinnaker.halyard.cli.command.v1.config.security.authn.oauth2.OAuth2Command
@@ -110,6 +111,10 @@ class CommandTreeSpec extends Specification {
     SamlCommand     | "disable"       | AuthnMethodEnableDisableCommand
     SamlCommand     | "enable"        | AuthnMethodEnableDisableCommand
     SamlCommand     | "edit"          | EditSamlCommand
+
+    LdapCommand     | "disable"       | AuthnMethodEnableDisableCommand
+    LdapCommand     | "enable"        | AuthnMethodEnableDisableCommand
+    LdapCommand     | "edit"          | EditLdapCommand
   }
 
 }

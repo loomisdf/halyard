@@ -8,4 +8,9 @@ public class LdapCommand extends AuthnMethodCommand {
     return AuthnMethod.Method.LDAP;
   }
 
+  public LdapCommand(){
+    super();
+    registerSubcommand(new EditLdapCommand());
+  }
+
 }

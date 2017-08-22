@@ -3384,7 +3384,7 @@ hal config security authn ldap disable [parameters]
 ---
 ## hal config security authn ldap edit
 
-placeholder text...markus says fix this.
+Edit the Ldap authentication method
 
 #### Usage
 ```
@@ -3395,9 +3395,11 @@ hal config security authn ldap edit [parameters]
  * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
  * `--no-validate`: (*Default*: `false`) Skip validation.
  * `--url`: ldap:// or ldaps:// url of the LDAP server
- * `--user-dn-pattern`: Placeholder...uid={0},ou=users
- * `--user-search-base`: Placeholder...
- * `--user-search-filter`: Placeholder
+ * `--user-dn-pattern`: User Dn pattern, Base + Unique e.g. uid={0},ou=users,dc=my-org,dc=com
+ * `--user-search-base`: Used when a simple DN pattern is not possible
+ * `--user-search-filter`: Used When a simple DN pattern is not possible
+ 
+Go [here](https://www.spinnaker.io/setup/security/authentication/ldap/) for more information about Ldap parameters and spinnaker.
 
 
 ---

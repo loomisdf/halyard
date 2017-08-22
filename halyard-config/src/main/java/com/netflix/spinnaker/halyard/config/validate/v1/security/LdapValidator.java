@@ -23,11 +23,14 @@ import com.netflix.spinnaker.halyard.core.problem.v1.Problem;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 public class LdapValidator extends Validator<Ldap> {
 
   @Override
   public void validate(ConfigProblemSetBuilder p, Ldap ldap) {
+
     if (!ldap.isEnabled()) {
       return;
     }

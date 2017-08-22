@@ -29,6 +29,7 @@ public class LdapConfig {
   boolean enabled;
 
   URI url;
+
   String userDnPattern;
   String userSearchBase;
   String userSearchFilter;

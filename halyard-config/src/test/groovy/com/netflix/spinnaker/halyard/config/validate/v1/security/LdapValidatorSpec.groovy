@@ -60,8 +60,7 @@ class LdapValidatorSpec extends Specification {
     description               | ldapUrl                   | userDnPattern  | userSearchBase | userSearchFilter || errorMessageMatches
     "missing user dn pattern" | "ldaps://ldap.some.com"   | null           | "sub"          | "ou=foo"         || "user dn pattern"
     "missing ldap url"        | null                      | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
-// coming soon:
-//    "invalid url"             | "not a real url"          | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
+    "invalid url"             | "not_a_real_url"          | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
     "wrong url protocol"      | "https://ldap.some.com"   | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
     "search base empty"       | "ldaps://ldap.some.com"   | "some pattern" | ""             | "ou=foo"         || "ldap user search base"
     "search filter empty"     | "ldaps://ldap.some.com"   | "some pattern" | "sub"          | ""               || "ldap user search filter"

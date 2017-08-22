@@ -31,7 +31,7 @@ public class Ldap extends AuthnMethod {
   private final String nodeName = "ldap";
 
   private URI url;
-
+  
   private String userDnPattern;
   private String userSearchBase;
   private String userSearchFilter;

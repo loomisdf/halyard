@@ -17,6 +17,7 @@
 package com.netflix.spinnaker.halyard.cli.command.v1.config.security.authn.ldap;
 
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.converters.URIConverter;
 import com.netflix.spinnaker.halyard.cli.command.v1.config.security.authn.AbstractEditAuthnMethodCommand;
 import com.netflix.spinnaker.halyard.config.model.v1.security.AuthnMethod;
 import com.netflix.spinnaker.halyard.config.model.v1.security.Ldap;
@@ -41,7 +42,8 @@ public class EditLdapCommand extends AbstractEditAuthnMethodCommand<Ldap> {
 
   @Parameter(
       names = "--url",
-      description = "ldap:// or ldaps:// url of the LDAP server"
+      description = "ldap:// or ldaps:// url of the LDAP server",
+      converter = URIConverter.class
   )
   private URI url;
 

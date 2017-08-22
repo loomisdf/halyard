@@ -28,8 +28,6 @@ import java.util.Arrays;
 @Component
 public class LdapValidator extends Validator<Ldap> {
 
-  String[] ldapSchemes = { "ldap", "ldaps"};
-
   @Override
   public void validate(ConfigProblemSetBuilder p, Ldap ldap) {
 
@@ -38,10 +36,9 @@ public class LdapValidator extends Validator<Ldap> {
     }
 
     if (ldap.getUrl() == null) {
-      p.addProblem(Problem.Severity.ERROR, "LDAP url must be provided. ");
-    }
-    else if (!Arrays.asList(ldapSchemes).contains(ldap.getUrl().getScheme())) {
-        p.addProblem(Problem.Severity.ERROR, "LDAP url scheme is invalid.");
+      p.addProblem(Problem.Severity.ERROR, "LDAP url missing.");
+    } else if (! ldap.getUrl().getScheme().equalsIgnoreCase("ldaps") && ! ldap.getUrl().getScheme().equalsIgnoreCase("ldap")) {
+      p.addProblem(Problem.Severity.ERROR, "LDAP url must use ldap or ldaps protocol.");
     }
 
     if(StringUtils.isEmpty(ldap.getUserDnPattern())) {

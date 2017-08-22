@@ -23,17 +23,25 @@ import com.netflix.spinnaker.halyard.core.problem.v1.Problem;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 public class LdapValidator extends Validator<Ldap> {
 
+  String[] ldapSchemes = { "ldap", "ldaps"};
+
   @Override
   public void validate(ConfigProblemSetBuilder p, Ldap ldap) {
+
     if (!ldap.isEnabled()) {
       return;
     }
 
-    if (StringUtils.isEmpty(ldap.getUrl())) {
-      p.addProblem(Problem.Severity.ERROR, "LDAP url must be provided.");
+    if (ldap.getUrl() == null) {
+      p.addProblem(Problem.Severity.ERROR, "LDAP url must be provided. ");
+    }
+    else if (!Arrays.asList(ldapSchemes).contains(ldap.getUrl().getScheme())) {
+        p.addProblem(Problem.Severity.ERROR, "LDAP url scheme is invalid.");
     }
 
     if(StringUtils.isEmpty(ldap.getUserDnPattern())) {

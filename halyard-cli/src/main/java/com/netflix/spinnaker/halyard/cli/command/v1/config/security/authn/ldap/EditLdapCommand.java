@@ -22,13 +22,19 @@ import com.netflix.spinnaker.halyard.config.model.v1.security.AuthnMethod;
 import com.netflix.spinnaker.halyard.config.model.v1.security.Ldap;
 import lombok.Getter;
 
+import java.net.URI;
+
 public class EditLdapCommand extends AbstractEditAuthnMethodCommand<Ldap> {
 
   @Getter
   private String shortDescription = "Configure authentication using a LDAP identity provider.";
 
   @Getter
-  private String longDescription = String.join(" ", "placeholder text...markus says fix this.");
+  private String longDescription = String.join(" ", "Lightweight Directory Access Protocol (LDAP)",
+      "is a standard way many organizations maintain user credentials and group memberships.",
+      "Spinnaker uses the standard “bind” approach for user authentication.",
+      "This is a fancy way of saying that Gate uses your username and password to login to the LDAP server,",
+      "and if the connection is successful, you’re considered authenticated.");
 
   @Getter
   private AuthnMethod.Method method = AuthnMethod.Method.LDAP;
@@ -37,7 +43,7 @@ public class EditLdapCommand extends AbstractEditAuthnMethodCommand<Ldap> {
       names = "--url",
       description = "ldap:// or ldaps:// url of the LDAP server"
   )
-  private String url;
+  private URI url;
 
   @Parameter(
       names = "--user-dn-pattern",
@@ -56,8 +62,6 @@ public class EditLdapCommand extends AbstractEditAuthnMethodCommand<Ldap> {
       description = "Placeholder"
   )
   private String userSearchFilter;
-
-
 
   @Override
   protected AuthnMethod editAuthnMethod(Ldap ldap) {
@@ -80,5 +84,4 @@ public class EditLdapCommand extends AbstractEditAuthnMethodCommand<Ldap> {
 
     return ldap;
   }
-
 }

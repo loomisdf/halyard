@@ -21,12 +21,15 @@ import com.netflix.spinnaker.halyard.config.model.v1.security.Security;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.net.URI;
+
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class LdapConfig {
   boolean enabled;
 
-  String url;
+  URI url;
+
   String userDnPattern;
   String userSearchBase;
   String userSearchFilter;

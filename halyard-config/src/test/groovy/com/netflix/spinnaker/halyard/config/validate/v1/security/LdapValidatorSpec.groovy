@@ -20,7 +20,8 @@ class LdapValidatorSpec extends Specification {
   @Unroll
   void "valid case: #description"() {
     setup:
-    def ldap = new Ldap(url: ldapUrl, userDnPattern: userDnPattern, userSearchBase: userSearchBase, userSearchFilter: userSearchFilter)
+    def ldap = new Ldap(userDnPattern: userDnPattern, userSearchBase: userSearchBase, userSearchFilter: userSearchFilter)
+    ldap.url = ldapUrl ? new URI(ldapUrl) : null
     ldap.enabled = enabled
 
     when:
@@ -35,12 +36,14 @@ class LdapValidatorSpec extends Specification {
     "not enabled"             | false   | null                      | null           | null           | null
     "minimal set"             | true    | "ldaps://ldap.some.com"   | "some pattern" | null           | null
     "all properties set"      | true    | "ldaps://ldap.some.com"   | "some pattern" | "sub"          | "ou=foo"
+    "plain LDAP"              | true    | "ldap://ldap.some.com"    | "some pattern" | "sub"          | "ou=foo"
   }
 
   @Unroll
   void "invalid case: #description"() {
     setup:
-    def ldap = new Ldap(url: ldapUrl, userDnPattern: userDnPattern, userSearchBase: userSearchBase, userSearchFilter: userSearchFilter)
+    def ldap = new Ldap(userDnPattern: userDnPattern, userSearchBase: userSearchBase, userSearchFilter: userSearchFilter)
+    ldap.url = ldapUrl ? new URI(ldapUrl) : null
     ldap.enabled = true
 
     when:
@@ -59,11 +62,8 @@ class LdapValidatorSpec extends Specification {
     "missing ldap url"        | null                      | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
 // coming soon:
 //    "invalid url"             | "not a real url"          | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
-//    "wrong url protocol"      | "https://ldap.some.com"   | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
+    "wrong url protocol"      | "https://ldap.some.com"   | "some pattern" | "sub"          | "ou=foo"         || "ldap url"
     "search base empty"       | "ldaps://ldap.some.com"   | "some pattern" | ""             | "ou=foo"         || "ldap user search base"
     "search filter empty"     | "ldaps://ldap.some.com"   | "some pattern" | "sub"          | ""               || "ldap user search filter"
   }
 }
-
-
-

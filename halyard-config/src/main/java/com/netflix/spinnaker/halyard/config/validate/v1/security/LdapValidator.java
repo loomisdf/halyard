@@ -32,8 +32,10 @@ public class LdapValidator extends Validator<Ldap> {
       return;
     }
 
-    if (StringUtils.isEmpty(ldap.getUrl())) {
-      p.addProblem(Problem.Severity.ERROR, "LDAP url must be provided.");
+    if (ldap.getUrl() == null) {
+      p.addProblem(Problem.Severity.ERROR, "LDAP url missing.");
+    } else if (! ldap.getUrl().getScheme().equalsIgnoreCase("ldaps") && ! ldap.getUrl().getScheme().equalsIgnoreCase("ldap")) {
+      p.addProblem(Problem.Severity.ERROR, "LDAP url must use ldap or ldaps protocol.");
     }
 
     if(StringUtils.isEmpty(ldap.getUserDnPattern())) {
